@@ -117,10 +117,10 @@ class face_rec():
             if matches[best_match_index]:
                 name = self.known_face_names[best_match_index]
             face_names.append(name)
-        
+
         rectangles = rectangles[:,0:4]
         #-----------------------------------------------#
-        #   画框~!~
+        #   画框呀~!~
         #-----------------------------------------------#
         for (left, top, right, bottom), name in zip(rectangles, face_names):
             cv2.rectangle(draw, (left, top), (right, bottom), (0, 0, 255), 2)
