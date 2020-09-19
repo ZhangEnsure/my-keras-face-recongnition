@@ -91,7 +91,7 @@ class face_rec():
         for rectangle in rectangles:
             landmark = (np.reshape(rectangle[5:15],(5,2)) - np.array([int(rectangle[0]),int(rectangle[1])]))/(rectangle[3]-rectangle[1])*160
 
-            # 截出来照片
+            # 截出来照片 
             crop_img = draw_rgb[int(rectangle[1]):int(rectangle[3]), int(rectangle[0]):int(rectangle[2])]
             crop_img = cv2.resize(crop_img,(160,160))
 
