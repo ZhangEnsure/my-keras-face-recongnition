@@ -218,7 +218,7 @@ def filter_face_48net(cls_prob,roi,pts,rectangles,width,height,threshold):
     return NMS(pick,0.3)
 
 #-------------------------------------#
-#   人脸对齐
+#   人脸对齐--眼部特征实现
 #-------------------------------------#
 def Alignment_1(img,landmark):
 
@@ -228,17 +228,21 @@ def Alignment_1(img,landmark):
     elif landmark.shape[0]==5:
         x = landmark[0,0] - landmark[1,0]
         y = landmark[0,1] - landmark[1,1]
-
+    # 眼睛连线相对于水平线的倾角
     if x==0:
         angle = 0
     else: 
+        # 计算角度弧度值
         angle = math.atan(y/x)*180/math.pi
 
+    # 计算转动的中心
     center = (img.shape[1]//2, img.shape[0]//2)
-
+    # 旋转矩阵
     RotationMatrix = cv2.getRotationMatrix2D(center, angle, 1)
+    # 放射函数进行旋转
     new_img = cv2.warpAffine(img,RotationMatrix,(img.shape[1],img.shape[0])) 
 
+    # 计算脸部五个特征点的位置
     RotationMatrix = np.array(RotationMatrix)
     new_landmark = []
     for i in range(landmark.shape[0]):
