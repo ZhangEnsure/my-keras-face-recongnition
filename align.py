@@ -16,6 +16,7 @@ rectangles = mtcnn_model.detectFace(img, threshold)
 
 draw = img.copy()
 # 转化成正方形
+# 人脸框 & 五个特征点的位置
 rectangles = utils.rect2square(np.array(rectangles))
 
 # 载入facenet
@@ -29,8 +30,9 @@ for rectangle in rectangles:
     if rectangle is not None:
         landmark = (np.reshape(rectangle[5:15],(5,2)) - np.array([int(rectangle[0]),int(rectangle[1])]))/(rectangle[3]-rectangle[1])*160
 
+        # y方向的截取和x方向的截取 
         crop_img = img[int(rectangle[1]):int(rectangle[3]), int(rectangle[0]):int(rectangle[2])]
-        
+        # resize后可以输入facenet中
         crop_img = cv2.resize(crop_img,(160,160))
         cv2.imshow("before",crop_img)
         new_img,_ = utils.Alignment_1(crop_img,landmark)
