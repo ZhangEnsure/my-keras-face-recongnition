@@ -7,6 +7,7 @@
 3. [文件下载 Download](#文件下载)
 4. [使用方法 Usage](#使用方法)
 5. [效果 Performance](#Reference)
+6. [致敬](#致敬)
 
 ### 简单介绍
 这是一个基于mtcnn和facenet的人脸识别模型，可实现在线人脸识别
@@ -29,3 +30,7 @@ keras==2.1.5
 ### 效果
 face_recognize.py的运行结果：  
 ![result](/result/result.png))  
+
+### 致敬
+本仓库Cr我的偶像XJQ同志，我仅仅是在他代码的基础之上做自己的改动，在Github上作为一个代码备份的存在，原创权归XJQ所有。  
+链接：https://github.com/bubbliiiing/keras-face-recognition
